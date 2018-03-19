@@ -1,7 +1,7 @@
 #!/bin/sh
 
-#  Install.sh
-#  Souviens-Mac
+#  install.sh
+#  Souviens
 #
 #  Created by Alex Davis on 3/2/18.
 #  Copyright © 2018 Alex T. Davis. All rights reserved.
