@@ -23,7 +23,7 @@
 		FA3976D9204A292200AFDE53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA3976DA204A292200AFDE53 /* Souviens_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Souviens_Mac.entitlements; sourceTree = "<group>"; };
 		FA3976E0204A654800AFDE53 /* install.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = install.sh; sourceTree = "<group>"; };
-		FA3976E1204A730100AFDE53 /* upgrade.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = upgrade.sh; sourceTree = "<group>"; };
+		FA50D7D420604B11006C455B /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +60,8 @@
 				FA3976D2204A292200AFDE53 /* ViewController.swift */,
 				FA3976E0204A654800AFDE53 /* install.sh */,
 				FA3976D4204A292200AFDE53 /* Assets.xcassets */,
-				FA3976E1204A730100AFDE53 /* upgrade.sh */,
 				FA3976D6204A292200AFDE53 /* Main.storyboard */,
+				FA50D7D420604B11006C455B /* TODO.md */,
 				FA3976D9204A292200AFDE53 /* Info.plist */,
 				FA3976DA204A292200AFDE53 /* Souviens_Mac.entitlements */,
 			);

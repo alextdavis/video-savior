@@ -29,11 +29,10 @@ fi
 
 if command -v ffmpeg >/dev/null 2>&1; then
     if command -v ffmpeg >/dev/null 2>&1; then
-        echo "\n\n\033[32mSuccess:\033[0m Components needed for Souviens are installed and up to date. \nPress return to close. "
-        read
+        echo "\n\n\033[32mSuccess:\033[0m Components needed for Souviens are installed and up to date. \nPlease close this window. "
         exit
     fi
 fi
 
-echo "\n\n\033[31mError:\033[0m Components needed for Souviens have failed to install. \nPlease read any error messages above. \nIf you need help troubleshooting, click the (?) button in the Souviens app. \nPress return to close. "
+echo "\n\n\033[31mError:\033[0m Components needed for Souviens have failed to install. \nPlease read any error messages above. \nIf you need help troubleshooting, visit http://souviens.alextdavis.me/help#brew. \nPress return to close. "
 read

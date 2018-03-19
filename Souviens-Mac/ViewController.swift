@@ -46,6 +46,7 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        UserDefaults.standard.set(false, forKey: "isSetUp")
 
         if !UserDefaults.standard.bool(forKey: "isSetUp") {
             print("Resetting")
@@ -81,7 +82,6 @@ class ViewController: NSViewController {
                     self.upgrade(0) //The 0 is there because some argument needs to be passed. I know it's a kludge.
                     UserDefaults.standard.set(true, forKey: "isSetUp")
                 } else {
-                    print(response)
                     exit(1)
                 }
             })
@@ -96,11 +96,10 @@ class ViewController: NSViewController {
     }
     
     func checkAdmin() {
-//        try! Process.run(URL(fileURLWithPath: "/usr/bin/dsmemberutil"), arguments: )
         let pipe = Pipe()
         let p = Process()
         p.executableURL = URL(fileURLWithPath: "/usr/bin/dsmemberutil")
-        p.arguments = ["checkmembership", "-U", "'$(whoami)'", "-G", "admin"]
+        p.arguments = ["checkmembership", "-U", NSUserName(), "-G", "admin"]
         p.standardOutput = pipe
         guard let _ = try? p.run() else { return }
         p.waitUntilExit()
@@ -114,14 +113,10 @@ class ViewController: NSViewController {
             alert.informativeText = "Souviens needs administrator permission to install components. Please run this application while logged in with an administrator account to install components. After that is done, press \"Continue Anyway\" to verify. For more information, visit http://souviens.alextdavis.me/help#admin"
             //TODO: Be smarter about when these messages are shown.
             alert.showsHelp = false
-            // TODO: Set up NSHelpManager
-            //            alert.helpAnchor = NSHelpManager.AnchorName(rawValue: "http://example.com")
             alert.beginSheetModal(for: self.view.window!, completionHandler: {response in
                 if response == .alertFirstButtonReturn {
-                    self.upgrade(0) //The 0 is there because some argument needs to be passed. I know it's a kludge.
-                    UserDefaults.standard.set(true, forKey: "isSetUp") //TODO: Be smarter about setting this
+                    return
                 } else {
-                    print(response)
                     exit(1)
                 }
             })
@@ -129,7 +124,7 @@ class ViewController: NSViewController {
     }
     
     func commandString() -> String {
-        var str = "cd '\(self.pathDisplay.url!.path)'; youtube-dl -f "
+        var str = "cd '\(self.pathDisplay.url!.path)'; youtube-dl --no-playlist -f "
         let constr = "[height<=\(resolutionMap[resolutionControl.selectedSegment])]" +
             (highFPSControl.state == .on ? "" : "[fps<40]")
 
@@ -154,7 +149,15 @@ class ViewController: NSViewController {
         }
         
         str.append(" \"\(videoURLField.stringValue)\"")
-        str.append("; echo 'Souviens is done. Please close this window.\n\n '")
+        
+        let termDefaults = UserDefaults(suiteName: "com.apple.Terminal")
+        if let profile = termDefaults?.string(forKey: "Default Window Settings"),
+            let dict = termDefaults!.dictionary(forKey: "Window Settings")?[profile] as? NSDictionary,
+            dict["shellExitAction"] as! Int == 1 || dict["shellExitAction"] as! Int == 0 {
+            str.append("; echo '\n\n\u{1b}[32mSouviens is done.\u{1b}[0m Press return to close.'; read;")
+            return str
+        }
+        str.append("; echo '\n\n\u{1b}[32mSouviens is done.\u{1b}[0m Please close this window.\n\n '")
         return str
     }
 
@@ -176,7 +179,7 @@ class ViewController: NSViewController {
     
     @IBAction func download(_ sender: Any) {
         let tmpURL = FileManager.default.temporaryDirectory.appendingPathComponent("download.command")
-        print(commandString())
+//        print(commandString())
         try! commandString().write(to: tmpURL, atomically: false, encoding: .utf8)
         try! Process.run(URL(fileURLWithPath: "/bin/chmod"), arguments: ["754", tmpURL.path])
         try! Process.run(URL(fileURLWithPath: "/usr/bin/open"), arguments: ["-a", "Terminal", tmpURL.path])
