@@ -11,6 +11,7 @@
 		FA3976D3204A292200AFDE53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3976D2204A292200AFDE53 /* ViewController.swift */; };
 		FA3976D5204A292200AFDE53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA3976D4204A292200AFDE53 /* Assets.xcassets */; };
 		FA3976D8204A292200AFDE53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA3976D6204A292200AFDE53 /* Main.storyboard */; };
+		FAD9FB2F2054B8100041C74E /* install.sh in Resources */ = {isa = PBXBuildFile; fileRef = FA3976E0204A654800AFDE53 /* install.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,8 @@
 		FA3976D7204A292200AFDE53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA3976D9204A292200AFDE53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA3976DA204A292200AFDE53 /* Souviens_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Souviens_Mac.entitlements; sourceTree = "<group>"; };
+		FA3976E0204A654800AFDE53 /* install.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = install.sh; sourceTree = "<group>"; };
+		FA3976E1204A730100AFDE53 /* upgrade.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = upgrade.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +58,9 @@
 			children = (
 				FA3976D0204A292200AFDE53 /* AppDelegate.swift */,
 				FA3976D2204A292200AFDE53 /* ViewController.swift */,
+				FA3976E0204A654800AFDE53 /* install.sh */,
 				FA3976D4204A292200AFDE53 /* Assets.xcassets */,
+				FA3976E1204A730100AFDE53 /* upgrade.sh */,
 				FA3976D6204A292200AFDE53 /* Main.storyboard */,
 				FA3976D9204A292200AFDE53 /* Info.plist */,
 				FA3976DA204A292200AFDE53 /* Souviens_Mac.entitlements */,
@@ -96,6 +101,11 @@
 					FA3976CC204A292200AFDE53 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -123,6 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA3976D5204A292200AFDE53 /* Assets.xcassets in Resources */,
+				FAD9FB2F2054B8100041C74E /* install.sh in Resources */,
 				FA3976D8204A292200AFDE53 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,11 +274,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Souviens-Mac/Souviens_Mac.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Souviens-Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.alextdavis.Souviens-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -278,11 +289,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Souviens-Mac/Souviens_Mac.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Souviens-Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.alextdavis.Souviens-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
