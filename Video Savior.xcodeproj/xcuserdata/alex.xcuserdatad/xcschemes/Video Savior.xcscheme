@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FA3976CC204A292200AFDE53"
-               BuildableName = "Souviens.app"
-               BlueprintName = "Souviens"
-               ReferencedContainer = "container:Souviens.xcodeproj">
+               BuildableName = "Video Savior.app"
+               BlueprintName = "Video Savior"
+               ReferencedContainer = "container:Video Savior.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FA3976CC204A292200AFDE53"
-            BuildableName = "Souviens.app"
-            BlueprintName = "Souviens"
-            ReferencedContainer = "container:Souviens.xcodeproj">
+            BuildableName = "Video Savior.app"
+            BlueprintName = "Video Savior"
+            ReferencedContainer = "container:Video Savior.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,9 +58,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FA3976CC204A292200AFDE53"
-            BuildableName = "Souviens.app"
-            BlueprintName = "Souviens"
-            ReferencedContainer = "container:Souviens.xcodeproj">
+            BuildableName = "Video Savior.app"
+            BlueprintName = "Video Savior"
+            ReferencedContainer = "container:Video Savior.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FA3976CC204A292200AFDE53"
-            BuildableName = "Souviens.app"
-            BlueprintName = "Souviens"
-            ReferencedContainer = "container:Souviens.xcodeproj">
+            BuildableName = "Video Savior.app"
+            BlueprintName = "Video Savior"
+            ReferencedContainer = "container:Video Savior.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

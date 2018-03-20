@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Souviens
+//  Video Savior
 //
 //  Created by Alex Davis on 3/2/18.
 //  Copyright © 2018 Alex T. Davis. All rights reserved.
@@ -70,16 +70,16 @@ class ViewController: NSViewController {
 
             let alert = NSAlert()
             alert.alertStyle = .informational
-            alert.messageText = "Souviens needs to install components"
+            alert.messageText = "Video Savior needs to install components"
             alert.addButton(withTitle: "Continue")
             alert.addButton(withTitle: "Quit")
-            alert.informativeText = "Souviens is a graphical facade for a command-line program. Souviens will now open a Terminal window which will install those command-line programs. For more information, visit http://souviens.alextdavis.me/help#install"
+            alert.informativeText = "Video Savior is a graphical facade for a command-line program. Video Savior will now open a Terminal window which will install those command-line programs. For more information, visit http://video-savior.alextdavis.me/help#install"
             alert.showsHelp = true
             // TODO: Set up NSHelpManager
 //            alert.helpAnchor = NSHelpManager.AnchorName(rawValue: "http://example.com")
             alert.beginSheetModal(for: self.view.window!, completionHandler: {response in
                 if response == .alertFirstButtonReturn {
-                    self.upgrade(0) //The 0 is there because some argument needs to be passed. I know it's a kludge.
+                    self.update(0) //The 0 is there because some argument needs to be passed. I know it's a kludge.
                     UserDefaults.standard.set(true, forKey: "isSetUp")
                 } else {
                     exit(1)
@@ -107,10 +107,10 @@ class ViewController: NSViewController {
         if !(output?.contains("user is a member") ?? false) {
             let alert = NSAlert()
             alert.alertStyle = .critical
-            alert.messageText = "Souviens needs to install components, and you are not an administrator"
+            alert.messageText = "Video Savior needs to install components, and you are not an administrator"
             alert.addButton(withTitle: "Continue anyway")
             alert.addButton(withTitle: "Quit")
-            alert.informativeText = "Souviens needs administrator permission to install components. Please run this application while logged in with an administrator account to install components. After that is done, press \"Continue Anyway\" to verify. For more information, visit http://souviens.alextdavis.me/help#admin"
+            alert.informativeText = "Video Savior needs administrator permission to install components. Please run this application while logged in with an administrator account to install components. After that is done, press \"Continue Anyway\" to verify. For more information, visit http://video-savior.alextdavis.me/help#admin"
             //TODO: Be smarter about when these messages are shown.
             alert.showsHelp = false
             alert.beginSheetModal(for: self.view.window!, completionHandler: {response in
@@ -154,10 +154,10 @@ class ViewController: NSViewController {
         if let profile = termDefaults?.string(forKey: "Default Window Settings"),
             let dict = termDefaults!.dictionary(forKey: "Window Settings")?[profile] as? NSDictionary,
             dict["shellExitAction"] as! Int == 1 || dict["shellExitAction"] as! Int == 0 {
-            str.append("; echo '\n\n\u{1b}[32mSouviens is done.\u{1b}[0m Press return to close.'; read;")
+            str.append("; echo '\n\n\u{1b}[32mVideo Savior is done.\u{1b}[0m Press return to close.'; read;")
             return str
         }
-        str.append("; echo '\n\n\u{1b}[32mSouviens is done.\u{1b}[0m Please close this window.\n\n '")
+        str.append("; echo '\n\n\u{1b}[32mVideo Savior is done.\u{1b}[0m Please close this window.\n\n '")
         return str
     }
 
@@ -178,17 +178,20 @@ class ViewController: NSViewController {
     }
     
     @IBAction func download(_ sender: Any) {
-        let tmpURL = FileManager.default.temporaryDirectory.appendingPathComponent("download.command")
-//        print(commandString())
-        try! commandString().write(to: tmpURL, atomically: false, encoding: .utf8)
-        try! Process.run(URL(fileURLWithPath: "/bin/chmod"), arguments: ["754", tmpURL.path])
-        try! Process.run(URL(fileURLWithPath: "/usr/bin/open"), arguments: ["-a", "Terminal", tmpURL.path])
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(Bundle.main.bundleIdentifier ?? "me.alextdavis.video-savior", isDirectory: true).appendingPathComponent("download.command")
+        try! FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
+        FileManager.default.createFile(atPath: url.path, contents: commandString().data(using: .utf8), attributes: [.posixPermissions: 0o754])
+        NSWorkspace.shared.open(url)
     }
     
-    @IBAction func upgrade(_ sender: Any) {
-        let installPath = Bundle.main.path(forResource: "install", ofType: "sh")
-        try! Process.run(URL(fileURLWithPath: "/bin/chmod"), arguments: ["754", installPath!])
-        try! Process.run(URL(fileURLWithPath: "/usr/bin/open"), arguments: ["-a", "Terminal", installPath!])
+    @IBAction func update(_ sender: Any) {
+        let url = Bundle.main.url(forResource: "update", withExtension: "command")!
+        try! FileManager.default.setAttributes([.posixPermissions: 0o754], ofItemAtPath: url.path)
+        NSWorkspace.shared.open(url)
+    }
+    
+    @IBAction func help(_ sender: Any) {
+        NSWorkspace.shared.open(URL(string: "http://video-savior.alextdavis.me/help")!)
     }
 }
 

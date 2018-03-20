@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #  install.sh
 #  Souviens
@@ -34,5 +34,5 @@ if command -v ffmpeg >/dev/null 2>&1; then
     fi
 fi
 
-echo "\n\n\033[31mError:\033[0m Components needed for Souviens have failed to install. \nPlease read any error messages above. \nIf you need help troubleshooting, visit http://souviens.alextdavis.me/help#brew. \nPress return to close. "
+echo "\n\n\033[31mError:\033[0m Components needed for Souviens have failed to install. \nPlease read any error messages above. \nIf you need help troubleshooting, visit http://video-savior.alextdavis.me/help#brew. \nPress return to close. "
 read
