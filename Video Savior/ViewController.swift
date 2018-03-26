@@ -52,12 +52,12 @@ class ViewController: NSViewController {
             alert.messageText = "Video Savior needs to install components"
             alert.addButton(withTitle: "Continue")
             alert.addButton(withTitle: "Quit")
-            alert.informativeText = "Video Savior is a graphical facade for a command-line program. Video Savior will now open a Terminal window which will install those command-line programs. For more information, visit http://video-savior.alextdavis.me/help#components"
+            alert.informativeText = "Video Savior is a graphical facade for a command-line program. Video Savior will now open a Terminal window which will install those command-line programs. For more information, visit http://video-savior.alextdavis.me/#components"
             alert.showsHelp = false
             alert.beginSheetModal(for: self.view.window!, completionHandler: {response in
                 if response == .alertFirstButtonReturn {
                     self.update(0) //The 0 is there because some argument needs to be passed. I know it's a kludge.
-                    UserDefaults.standard.set(true, forKey: "isSetUp")
+                    UserDefaults.standard.set(true, forKey: "isSetUp") //TODO: Be smarter about when this should be set
                 } else {
                     exit(1)
                 }
@@ -86,8 +86,7 @@ class ViewController: NSViewController {
             alert.alertStyle = .critical
             alert.messageText = "Video Savior cannot install/update components, because you are not an administrator"
             alert.addButton(withTitle: "Cancel")
-            alert.informativeText = "Video Savior needs administrator permission to install or update components. Please run this application while logged in with an administrator account to install or update components. For more information, visit http://video-savior.alextdavis.me/help#admin"
-            //TODO: Be smarter about when these messages are shown.
+            alert.informativeText = "Video Savior needs administrator permission to install or update components. Please run this application while logged in with an administrator account to install or update components. For more information, visit http://video-savior.alextdavis.me/#admin"
             alert.showsHelp = false
             alert.beginSheetModal(for: self.view.window!)
             return false

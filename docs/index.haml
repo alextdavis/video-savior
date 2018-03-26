@@ -1,0 +1,185 @@
+!!! 5
+%html(lang="en")
+  %head
+    %meta(charset="utf-8")
+    %meta(name="author" content="Alex T. Davis")
+    %title Video Savior
+    %link{href: "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css", 
+      rel: "stylesheet", 
+      integrity: "sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm", 
+      crossorigin: "anonymous"}
+    %style
+      body {margin: 8px;}
+      dd {margin-left: 30px}
+      p, dd, li {line-height: 120%}
+    
+  %body
+    %h1 Video Savior<sup>𝛼</sup>
+
+    %h2 About
+    %p 
+      Video Savior is a Mac application which makes it easy to download videos from
+      popular video sharing sites. Video Savior is a graphical facade for the 
+      %a(href="https://rg3.github.io/youtube-dl/") youtube-dl
+      command-line program. This application wouldn't be possible without
+      the hard work of youtube-dl's contributors, so consider making a 
+      %a(href="https://rg3.github.io/youtube-dl/donations.html") donation
+      to the youtube-dl project. 
+    %p
+      Video Savior is designed to be minimally intrusive to the normal functioning
+      of youtube-dl. When you press download, Video Savior will open a Terminal 
+      window, where the command-line program will run. This also allows the user
+      to see the download progress. 
+    
+    %p
+      For now, Video Savior is in alpha. This means the software is likely unstable,
+      and I'm looking for all the feedback I can get. If you have bug reports, 
+      suggestions for the application, or suggestions for the documentation,
+      please send me an email at video-savior@alextdavis.me. 
+    
+    %h3 Download
+    %p 
+      For now, I'm only distributing Video Savior directly to alpha-testers. If
+      you'd like to request a copy, send me an email at 
+      video-savior@alextdavis.me.
+
+    %h3 System Requirements
+    %ul
+      %li macOS 10.10 Yosemite or later
+      %li Administrator privelages for installation (<a href="#admin">more info</a>)
+
+    %h2 Help
+    %h3#components First-time Setup 
+    %p 
+      When Video Savior first launches, it will try to install the internal
+      components that are required for Video Savior to function. When you click 
+      "Continue", Video Savior will open a Terminal window which will install:
+    %ul 
+      %li 
+        %a(href="https://brew.sh") Homebrew,
+        a Package Manager widely used to manage the installation and updating 
+        of command-line software on the Mac
+      %li
+        %a(href="https://rg3.github.io/youtube-dl/") youtube-dl,
+        the command-line program which Video Savior uses to download videos
+      %li
+        %a(href="https://ffmpeg.org") FFmpeg,
+        a program which handles conversion of files from the
+        formats that video sites use to those your computer can read easily. 
+    %p 
+      Because these command line tools modify the system, the first-time setup
+      must be run by a user with administrator privelages.
+
+    
+    %h3 Options
+    %dl
+      %dt Video URL
+      %dd The URL of the video to be downlaoded. 
+
+      %dt Format
+      %dd 
+        This will select which kind of video file will be downloaded.
+        %dl
+          %dt Default
+          %dd 
+            This setting will prefer MPEG, but will use WebM where there is a
+            higher resolution video available in WebM only. This setting will
+            also fallback gracefully for unusual video sources. 
+          
+          %dt MPEG
+          %dd 
+            The Motion Picture Experts Group (MPEG) develops the industry 
+            standard video formats. If you want to be sure you can play
+            back the videos you download without 3rd party software, you'd be
+            best off choosing MPEG format. 
+
+          %dt WebM 
+          %dd 
+            WebM is an open format developed primarily by Google. Thus, YouTube
+            videos are only available at 1440p60 or 4K resolution in the WebM
+            format. WebM is widely adopted, but not industry standard, and thus,
+            for example, cannot be played back in QuickTime or on iPhone. WebM 
+            videos can be played back with 
+            %a(href="http://www.videolan.org/vlc/") VLC Media Player.
+
+          %dt Audio Only
+          %dd
+            This will download an audio track alone, if available. It will prefer
+            a file with an .m4a extension if available. 
+
+          %dt Legacy
+          %dd 
+            This format will only download single-file videos (rather than
+            separate audio and video files.) This may be useful, for example, 
+            to get a video from YouTube in 3gp format. 
+      
+      %dt Max Quality
+      %dd This allows you to limit the resolution of the video download. 
+
+      %dt Use high framerate video when available 
+      %dd 
+        When set, Video Savior will allow download of video with framerates above
+        40 frames per second. 
+
+      %dt Download to
+      %dd 
+        The folder where downloaded files should be placed. Press the "Change"
+        button to change this folder. 
+      
+      %dt Update Components
+      %dd 
+        This will check for new versions of the internal components. If a video
+        fails to download, it may be because the internal components are out of
+        date. 
+
+      %dt Set as Defaults
+      %dd 
+        This will save your current Format, Max Qualiy, high framerate, and 
+        Download folder settings so they'll be selected next time you open
+        Video Savior. 
+
+      %dt Download
+      %dd Download the video. 
+
+    %h3#help FAQ
+    %dl
+      %dt The video didn't download. What do I do?
+      %dd
+        Try pressing "Update Components", and try again. Some video sites change
+        frequently, and the internal components may need to be updated to adapt. 
+        If the problem persists, try reading the text in the Terminal window to
+        look for errors. If you don't see an error you understand, I can try to
+        help. Copy & paste the entire contents of the
+        Terminal window into an email, and send it to video-savior@alextdavis.me
+        with "download error" in the subject. I'll try to work with you to 
+        solve or at least explain the problem. 
+        As I start getting error reports, I'll update this FAQ with the 
+        solutions to common problems. 
+
+      %dt There was an error in the Terminal window when I tried to update components. What do I do?
+      %dd
+        Send me an email with the error. Copy & paste the entire contents of the
+        Terminal window into an email, and send it to video-savior@alextdavis.me
+        with "component error" in the subject. I'll try to work with you to 
+        solve or at least explain the problem. 
+        As I start getting error reports, I'll update this FAQ with the 
+        solutions to common problems. 
+
+      %dt The app crashed! What do I do?
+      %dd 
+        Oops! Sorry about that. When the error reporter window comes up, click
+        "Show Details", copy & paste the text that appears into an email, and 
+        send it to video-savior@alextdavis.me with "crash" in the subject. 
+        I'll try to figure out what happened, and hopefully your crash report
+        will help make future versions of Video Savior more stable. 
+
+      %dt#admin Do I need to have administrator permissions to use Video Savior?
+      %dd 
+        Yes and no. 
+        The internal component Homebrew, which is used to install the other
+        internal components, requires administrator privelages to be 
+        installed. Once the internal components have been installed, however,
+        Video Savior should work fine on all user accounts. So if you don't have
+        administrator permissions, ask an admin to run Video Savior on their
+        account, get it working, and then it should also work on your account.
+      
