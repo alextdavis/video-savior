@@ -178,7 +178,7 @@ class ViewController: NSViewController {
     }
     
     @IBAction func help(_ sender: Any) {
-        NSWorkspace.shared.open(URL(string: "http://video-savior.alextdavis.me/help")!)
+        NSWorkspace.shared.open(URL(string: "http://video-savior.alextdavis.me/")!)
     }
 }
 
