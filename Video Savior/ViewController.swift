@@ -98,10 +98,10 @@ class ViewController: NSViewController {
     func checkAdmin() {
         let pipe = Pipe()
         let p = Process()
-        p.executableURL = URL(fileURLWithPath: "/usr/bin/dsmemberutil")
+        p.launchPath = "/usr/bin/dsmemberutil"
         p.arguments = ["checkmembership", "-U", NSUserName(), "-G", "admin"]
         p.standardOutput = pipe
-        guard let _ = try? p.run() else { return }
+        p.launch()
         p.waitUntilExit()
         let output = String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
         if !(output?.contains("user is a member") ?? false) {
