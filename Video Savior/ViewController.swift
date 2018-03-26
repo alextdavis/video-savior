@@ -47,8 +47,6 @@ class ViewController: NSViewController {
     
     override func viewDidAppear() {
         if !UserDefaults.standard.bool(forKey: "isSetUp") {
-            checkAdmin()
-
             let alert = NSAlert()
             alert.alertStyle = .informational
             alert.messageText = "Video Savior needs to install components"
@@ -74,7 +72,7 @@ class ViewController: NSViewController {
         UserDefaults.standard.set(pathDisplay.url, forKey: "directory")
     }
     
-    func checkAdmin() {
+    func checkAdmin() -> Bool {
         let pipe = Pipe()
         let p = Process()
         p.launchPath = "/usr/bin/dsmemberutil"
@@ -86,19 +84,15 @@ class ViewController: NSViewController {
         if !(output?.contains("user is a member") ?? false) {
             let alert = NSAlert()
             alert.alertStyle = .critical
-            alert.messageText = "Video Savior needs to install components, and you are not an administrator"
-            alert.addButton(withTitle: "Continue anyway")
-            alert.addButton(withTitle: "Quit")
-            alert.informativeText = "Video Savior needs administrator permission to install components. Please run this application while logged in with an administrator account to install components. If this has been done already, press \"Continue Anyway\" to continue. For more information, visit http://video-savior.alextdavis.me/help#admin"
+            alert.messageText = "Video Savior cannot install/update components, because you are not an administrator"
+            alert.addButton(withTitle: "Cancel")
+            alert.informativeText = "Video Savior needs administrator permission to install or update components. Please run this application while logged in with an administrator account to install or update components. For more information, visit http://video-savior.alextdavis.me/help#admin"
             //TODO: Be smarter about when these messages are shown.
             alert.showsHelp = false
-            alert.beginSheetModal(for: self.view.window!, completionHandler: {response in
-                if response == .alertFirstButtonReturn {
-                    return
-                } else {
-                    exit(1)
-                }
-            })
+            alert.beginSheetModal(for: self.view.window!)
+            return false
+        } else {
+            return true
         }
     }
     
@@ -174,10 +168,13 @@ class ViewController: NSViewController {
     }
     
     @IBAction func update(_ sender: Any) {
+        guard checkAdmin() else {
+            return
+        }
+
         let bundleURL = Bundle.main.url(forResource: "update", withExtension: "command")!
         let url = tempURL(for: "update.command")
-        try! FileManager.default.copyItem(at: bundleURL, to: url)
-        try! FileManager.default.setAttributes([.posixPermissions: 0o754], ofItemAtPath: url.path)
+        try! FileManager.default.createFile(atPath: url.path, contents: Data(contentsOf: bundleURL), attributes: [.posixPermissions: 0o754])
         NSWorkspace.shared.open(url)
     }
     
