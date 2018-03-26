@@ -6,8 +6,6 @@
 //  Copyright © 2018 Alex T. Davis. All rights reserved.
 //
 
-// TODO: Make computed variables for all the IBOutlets.
-
 import Cocoa
 
 class ViewController: NSViewController {
@@ -23,27 +21,6 @@ class ViewController: NSViewController {
     @IBOutlet weak var highFPSControl: NSButton!
     @IBOutlet weak var pathDisplay: NSPathControl!
     
-//    var videoURL: String {
-//        get { return videoURLField.stringValue }
-//    }
-//
-//    var format: Format {
-//        get { return Format.init(rawValue: formatControl.selectedSegment)! }
-//    }
-//
-//    var resolution: Int {
-//        get { return resolutionMap[resolutionControl.selectedSegment] }
-//    }
-//
-//    var highFPS: Bool {
-//        get { return highFPSControl.state == .on }
-//        set(new) { highFPSControl.state = new ? .on : .off }
-//    }
-//
-//    var downloadPath: URL {
-//        get { return pathDisplay.url }
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        UserDefaults.standard.set(false, forKey: "isSetUp")
@@ -53,7 +30,13 @@ class ViewController: NSViewController {
             UserDefaults.standard.set(0, forKey: "format")
             UserDefaults.standard.set(5, forKey: "quality")
             UserDefaults.standard.set(true, forKey: "highFPS")
-        UserDefaults.standard.set(FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Downloads", isDirectory: true), forKey: "directory")
+            let homeURL: URL
+            if #available(OSX 10.12, *) {
+                homeURL = FileManager.default.homeDirectoryForCurrentUser
+            } else {
+                homeURL = URL(fileURLWithPath: NSHomeDirectory(), isDirectory: true)
+            }
+            UserDefaults.standard.set(homeURL.appendingPathComponent("Downloads", isDirectory: true), forKey: "directory")
         }
         
         formatControl.selectedSegment = UserDefaults.standard.integer(forKey: "format")
@@ -64,8 +47,6 @@ class ViewController: NSViewController {
     
     override func viewDidAppear() {
         if !UserDefaults.standard.bool(forKey: "isSetUp") {
-            // TODO: Check that current user is admin.
-            //
             checkAdmin()
 
             let alert = NSAlert()
@@ -73,10 +54,8 @@ class ViewController: NSViewController {
             alert.messageText = "Video Savior needs to install components"
             alert.addButton(withTitle: "Continue")
             alert.addButton(withTitle: "Quit")
-            alert.informativeText = "Video Savior is a graphical facade for a command-line program. Video Savior will now open a Terminal window which will install those command-line programs. For more information, visit http://video-savior.alextdavis.me/help#install"
-            alert.showsHelp = true
-            // TODO: Set up NSHelpManager
-//            alert.helpAnchor = NSHelpManager.AnchorName(rawValue: "http://example.com")
+            alert.informativeText = "Video Savior is a graphical facade for a command-line program. Video Savior will now open a Terminal window which will install those command-line programs. For more information, visit http://video-savior.alextdavis.me/help#components"
+            alert.showsHelp = false
             alert.beginSheetModal(for: self.view.window!, completionHandler: {response in
                 if response == .alertFirstButtonReturn {
                     self.update(0) //The 0 is there because some argument needs to be passed. I know it's a kludge.
@@ -110,7 +89,7 @@ class ViewController: NSViewController {
             alert.messageText = "Video Savior needs to install components, and you are not an administrator"
             alert.addButton(withTitle: "Continue anyway")
             alert.addButton(withTitle: "Quit")
-            alert.informativeText = "Video Savior needs administrator permission to install components. Please run this application while logged in with an administrator account to install components. After that is done, press \"Continue Anyway\" to verify. For more information, visit http://video-savior.alextdavis.me/help#admin"
+            alert.informativeText = "Video Savior needs administrator permission to install components. Please run this application while logged in with an administrator account to install components. If this has been done already, press \"Continue Anyway\" to continue. For more information, visit http://video-savior.alextdavis.me/help#admin"
             //TODO: Be smarter about when these messages are shown.
             alert.showsHelp = false
             alert.beginSheetModal(for: self.view.window!, completionHandler: {response in
@@ -177,15 +156,27 @@ class ViewController: NSViewController {
         })
     }
     
+    func tempURL(for name: String) -> URL {
+        let url: URL
+        if #available(OSX 10.12, *) {
+            url = FileManager.default.temporaryDirectory.appendingPathComponent(Bundle.main.bundleIdentifier ?? "me.alextdavis.video-savior", isDirectory: true)
+        } else {
+            url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(Bundle.main.bundleIdentifier ?? "me.alextdavis.video-savior")
+        }
+        try! FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+        return url.appendingPathComponent(name)
+    }
+    
     @IBAction func download(_ sender: Any) {
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent(Bundle.main.bundleIdentifier ?? "me.alextdavis.video-savior", isDirectory: true).appendingPathComponent("download.command")
-        try! FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
+        let url = tempURL(for: "download.command")
         FileManager.default.createFile(atPath: url.path, contents: commandString().data(using: .utf8), attributes: [.posixPermissions: 0o754])
         NSWorkspace.shared.open(url)
     }
     
     @IBAction func update(_ sender: Any) {
-        let url = Bundle.main.url(forResource: "update", withExtension: "command")!
+        let bundleURL = Bundle.main.url(forResource: "update", withExtension: "command")!
+        let url = tempURL(for: "update.command")
+        try! FileManager.default.copyItem(at: bundleURL, to: url)
         try! FileManager.default.setAttributes([.posixPermissions: 0o754], ofItemAtPath: url.path)
         NSWorkspace.shared.open(url)
     }
