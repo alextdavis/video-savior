@@ -1,0 +1,16 @@
+body {
+    margin: 8px;
+}
+
+dd {
+    margin-left: 30px;
+}
+
+p, dd, li {
+    line-height: 120%;
+}
+
+#screenshot {
+    width: 506px; 
+    max-width: 100%;
+}
