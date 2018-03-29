@@ -202,6 +202,23 @@
         Video Savior should work fine on all user accounts. So if you don't have
         administrator permissions, ask an admin to run Video Savior on their
         account, get it working, and then it should also work on your account.
+
+      %dt#uninstall How do I uninstall Video Savior?
+      %dd
+        Uninstalling Video Savior itself is as easy as moving the application
+        to the trash. If you also want to uninstall the internal components,
+        it's a little more complicated. Be aware that these instructions
+        will remove these components even if they're being used outside of
+        Video Savior. If anyone who uses your computer is a programmer, or
+        otherwise uses the command-line, I'd suggest running it by them first.
+        %br/
+        To uninstall youtube-dl, ffmpeg, and Homebrew, copy & paste the
+        following into a new Terminal window, and press return. 
+        %pre 
+          %code 
+            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+        To uninstall the Xcode command line tools, simply delete the folder at
+        %code Macintosh HD/Library/Developer/CommandLineTools
         
   %footer
     %hr/

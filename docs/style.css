@@ -14,3 +14,7 @@ p, dd, li {
     width: 506px; 
     max-width: 100%;
 }
+
+pre {
+    margin: .3rem 1rem;
+}
