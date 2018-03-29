@@ -343,10 +343,9 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Video Savior" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Video Savior" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="196" y="240" width="500" height="225"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
@@ -365,11 +364,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Video_Savior" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="525" height="225"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="225"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="35r-V1-uC3">
-                                <rect key="frame" x="410" y="13" width="101" height="32"/>
+                                <rect key="frame" x="385" y="13" width="101" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="push" title="Download" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="o85-GW-pnd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -394,7 +393,7 @@ DQ
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sh0-Nq-CWL">
-                                <rect key="frame" x="129" y="183" width="376" height="22"/>
+                                <rect key="frame" x="126" y="183" width="354" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="3Eu-Wj-b9B">
                                     <font key="font" metaFont="system"/>
@@ -403,7 +402,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCJ-eb-KWa">
-                                <rect key="frame" x="18" y="185" width="72" height="20"/>
+                                <rect key="frame" x="18" y="185" width="101" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Video URL:" id="t9g-rX-GUx">
                                     <font key="font" metaFont="system"/>
@@ -411,22 +410,8 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yUn-QA-rCp">
-                                <rect key="frame" x="127" y="152" width="380" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillProportionally" style="rounded" trackingMode="selectOne" id="8nD-xB-L6Q">
-                                    <font key="font" metaFont="system"/>
-                                    <segments>
-                                        <segment label="Default" selected="YES"/>
-                                        <segment label="MPEG" tag="1"/>
-                                        <segment label="WebM"/>
-                                        <segment label="Audio Only"/>
-                                        <segment label="Legacy"/>
-                                    </segments>
-                                </segmentedCell>
-                            </segmentedControl>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ch4-Yz-tuQ">
-                                <rect key="frame" x="18" y="155" width="70" height="20"/>
+                                <rect key="frame" x="18" y="155" width="101" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Format:" id="gZP-lK-FFA">
                                     <font key="font" metaFont="system"/>
@@ -461,7 +446,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w7m-uD-Wqz">
-                                <rect key="frame" x="278" y="13" width="132" height="32"/>
+                                <rect key="frame" x="253" y="13" width="132" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="push" title="Set as Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uEo-o6-UR3">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -472,7 +457,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4kW-Vd-dzn">
-                                <rect key="frame" x="424" y="58" width="87" height="32"/>
+                                <rect key="frame" x="399" y="58" width="87" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Change" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="a8G-oE-3dn">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -483,7 +468,7 @@ DQ
                                 </connections>
                             </button>
                             <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d65-cD-WWg">
-                                <rect key="frame" x="110" y="64" width="312" height="22"/>
+                                <rect key="frame" x="110" y="64" width="287" height="22"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <pathCell key="cell" selectable="YES" alignment="left" id="YAu-Ve-m3C">
                                     <font key="font" metaFont="system"/>
@@ -502,9 +487,9 @@ DQ
                                 </connections>
                             </button>
                             <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jW4-g5-zaN">
-                                <rect key="frame" x="127" y="123" width="380" height="24"/>
+                                <rect key="frame" x="124" y="123" width="358" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillProportionally" style="rounded" trackingMode="selectOne" id="Plm-4O-F9N">
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fill" style="rounded" trackingMode="selectOne" id="Plm-4O-F9N">
                                     <font key="font" metaFont="system"/>
                                     <segments>
                                         <segment label="240p"/>
@@ -513,6 +498,20 @@ DQ
                                         <segment label="1080p" tag="3"/>
                                         <segment label="1440p" tag="4"/>
                                         <segment label="4K" selected="YES" tag="5"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yUn-QA-rCp">
+                                <rect key="frame" x="124" y="151" width="358" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fill" style="rounded" trackingMode="selectOne" id="8nD-xB-L6Q">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="Default" selected="YES"/>
+                                        <segment label="MPEG" tag="1"/>
+                                        <segment label="WebM"/>
+                                        <segment label="Audio Only"/>
+                                        <segment label="Legacy"/>
                                     </segments>
                                 </segmentedCell>
                             </segmentedControl>
@@ -528,7 +527,7 @@ DQ
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="636"/>
+            <point key="canvasLocation" x="75" y="600"/>
         </scene>
     </scenes>
 </document>
