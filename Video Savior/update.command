@@ -29,7 +29,8 @@ fi
 
 if command -v ffmpeg >/dev/null 2>&1; then
     if command -v ffmpeg >/dev/null 2>&1; then
-        echo "\n\n\033[32mSuccess:\033[0m Components needed for Video Savior are installed and up to date. \nPlease close this window. "
+        echo "Note: If there is an error message above which say that youtube-dl and/or ffmpeg is already installed, that's okay. It just means that that component is already the latest version."
+        echo "\n\n\033[32mSuccess:\033[0m Components needed for Video Savior are installed and up to date. \nPlease close this window. \n\n"
         sleep 3
         exit
     fi

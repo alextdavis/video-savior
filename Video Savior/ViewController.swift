@@ -52,7 +52,7 @@ class ViewController: NSViewController {
             alert.messageText = "Video Savior needs to install components"
             alert.addButton(withTitle: "Continue")
             alert.addButton(withTitle: "Quit")
-            alert.informativeText = "Video Savior is a graphical facade for a command-line program. Video Savior will now open a Terminal window which will install those command-line programs. For more information, visit https://video-savior.alextdavis.me/#components"
+            alert.informativeText = "Video Savior is a graphical facade for a command-line program. Video Savior will now open a Terminal window which will install those command-line programs. You may be required to enter your password. As you type, your password will be hidden. For more information, visit https://video-savior.alextdavis.me/#components"
             alert.showsHelp = false
             alert.beginSheetModal(for: self.view.window!, completionHandler: {response in
                 if response == .alertFirstButtonReturn {
@@ -124,8 +124,8 @@ class ViewController: NSViewController {
         
         let termDefaults = UserDefaults(suiteName: "com.apple.Terminal")
         if let profile = termDefaults?.string(forKey: "Default Window Settings"),
-            let dict = termDefaults!.dictionary(forKey: "Window Settings")?[profile] as? NSDictionary,
-            dict["shellExitAction"] as! Int == 1 || dict["shellExitAction"] as! Int == 0 {
+            let dict = termDefaults?.dictionary(forKey: "Window Settings")?[profile] as? NSDictionary,
+            dict["shellExitAction"] as? Int == 1 || dict["shellExitAction"] as? Int == 0 {
             str.append("; echo '\n\n\u{1b}[32mVideo Savior is done.\u{1b}[0m Press return to close.'; read;")
             return str
         }

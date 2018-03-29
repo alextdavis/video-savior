@@ -57,21 +57,38 @@
       components that are required for Video Savior to function. When you click 
       "Continue", Video Savior will open a Terminal window which will install:
     %ul 
+      %li
+        %a(href="https://developer.apple.com/xcode/") Xcode command line tools,
+        a set of essential programs for doing command-line work on the Mac, 
+        published by Apple as part of Xcode, the software which one uses 
+        to write software for Apple products. Homebrew won't work without
+        the Xcode command line tools. 
       %li 
         %a(href="https://brew.sh") Homebrew,
         a Package Manager widely used to manage the installation and updating 
-        of command-line software on the Mac
+        of command-line software on the Mac. This is used to install youtube-dl
+        and ffmpeg (below), and keep them up to date. 
       %li
         %a(href="https://rg3.github.io/youtube-dl/") youtube-dl,
-        the command-line program which Video Savior uses to download videos
+        the command-line program which Video Savior uses to download videos.
       %li
         %a(href="https://ffmpeg.org") FFmpeg,
-        a program which handles conversion of files from the
-        formats that video sites use to those your computer can read easily. 
+        a program which handles conversion of files from the formats that 
+        video sites use to those your computer can read easily. 
     %p 
       Because these command line tools modify the system, the first-time setup
       must be run by a user with administrator privileges.
 
+    %p
+      The first time components are installed, you'll have to type your 
+      system password into the Terminal window. First, a list of the 
+      exact changes which will be made will be displayed, and you'll
+      be asked to "Press RETURN to continue or any other key to abort". Once
+      you press return, you'll see a prompt of "Password: " followed by a key
+      shape (
+      <img alt="password_prompt" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAQCAAAAAB7bN0CAAABr0lEQVR4AazQA3DgQABA0eP4bNu2bVvDs23btm3btlXbto3fbNRkVP5BuG+Rh9wrp5bf5YNKl/1ybEnUeadQp/MSlk0r8hVqBw8eiyKYqGMHD0pW0VKFm/4mazm0TbeeEn4wnKeKlZx4oi+ZLdlghSGs5xADz1WL1DLR2A9qOTkenAZ2Gh6lXWb+8W7MueNYjG0824/k7rVetCxozcsOjXcI63i+78I6GQvEntQsuyZw8jezrsKMOzz4pF12n3tQyXv2O3q/Sd21Aug96nVCErV/Js4W1oeunsI6eA24dlCxRvRu9ABSPh0YuQwuNDvojXb5uHjtjgc9o0LqQnhtYR0A7FvDf8N5SQgJB1Xrjx3AiJUvVkgWDlvr3tEuMYMmeKztQWADiKkmrH+ATXuwNlvhZzUrGSC1QgzjJOu0O2cW6JeBkxk8ETpac2GesKyB1KqurBbWwxr2qoXvcaPFrgatp0nWq3a9e7rolymbGHICPnRrMdQZRhdv0xe4VqfhUmHdKGmlWpFXDyqWVnyqco0xXbSPGEpJBPN5xZw2W2kjOw9N2v9qEShD0ihvUw4AFQAJ6mej+HkAAAAASUVORK5CYII=">
+      ). As you type, your password will be hidden. Once you've typed your 
+      password, press return. The installation should only take a few minutes. 
     
     %h3 Options
     %dl
@@ -169,8 +186,9 @@
 
       %dt The app crashed! What do I do?
       %dd 
-        Oops! Sorry about that. When the error reporter window comes up, click
-        "Show Details", copy & paste the text that appears into an email, and 
+        Oops! Sorry about that. When the error reporter window (which says 
+        "Video Savior quit unexpectedly") comes up, click "Report...", then
+        "Show Details", and copy & paste the text that appears into an email, and 
         send it to video-savior@alextdavis.me with "crash" in the subject. 
         I'll try to figure out what happened, and hopefully your crash report
         will help make future versions of Video Savior more stable. 
